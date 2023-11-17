@@ -25,17 +25,24 @@ export class MyCar extends Vehicle {
         //cabin
         ctx.fillStyle = this.color;
         ctx.fillRect(
-            -carWidth / 2 - 5,
+            carWidth / 2 + 7,
             carHeight / 2 - 9,
             carWidth / 2,
             carHeight / 2
-        ); // Front cabin
+        ); // front cabin
+
         ctx.fillRect(
-            carWidth / 2 + 5,
+            -carWidth / 2 - 1,
             carHeight / 2 - 9,
-            carWidth / 2,
+            carWidth / 3,
             carHeight / 2
-        ); // Back cabin
+        ); // back cabin
+
+        //windows
+        ctx.fillStyle = 'white';
+        for (let i = 0; i < 2; i++) {
+            ctx.fillRect(-carWidth / 2 + 10 + i * 14, -carHeight + 11, 12, 8);
+        }
 
         //wheel
         ctx.fillStyle = 'black';
@@ -46,5 +53,17 @@ export class MyCar extends Vehicle {
         ctx.fill();
 
         ctx.restore(); //restore vancas state
+    }
+
+    move(mvt_direction) {
+        if (mvt_direction === 'Up' && this.lane > 0) {
+            this.lane--; //move up a lane
+        } else if (mvt_direction === 'Down' && this.lane < 2) {
+            this.lane++; //move down a lane
+        }
+
+        //recalculate the y coordinate:
+        const laneHeight = this.canvasHeight / 3;
+        this.y = this.lane * laneHeight + laneHeight / 2; //center on lane
     }
 }

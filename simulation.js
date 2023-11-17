@@ -33,6 +33,9 @@ export class Simulation {
             vehicle.move(); //move the vehicles
         });
 
+        //move the highway marking to simulate mvt
+        this.highway.move_markings(2);
+
         //collision logic
     }
 
@@ -50,6 +53,10 @@ export class Simulation {
         this.vehicles.forEach((vehicle) => {
             vehicle.draw(this.ctx); //draws all vehicles
         });
+    }
+
+    move(mvt_direction) {
+        this.my_car.move(mvt_direction);
     }
 
     start() {

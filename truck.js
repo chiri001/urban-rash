@@ -39,6 +39,10 @@ export class Truck extends Vehicle {
             cabinHeight
         );
 
+        //windows
+        ctx.fillStyle = 'white';
+        ctx.fillRect(-truckWidth / 2 + 10 + 36, -truckHeight + 14, 13, 9);
+
         //wheel
         ctx.fillStyle = 'black';
         ctx.beginPath();

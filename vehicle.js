@@ -10,6 +10,8 @@ export class Vehicle {
         const laneHeight = canvasHeight / 3; //three equal lanes
         this.y = lane * laneHeight + laneHeight / 2; //middle of given lane
 
+        this.canvasHeight = canvasHeight;
+
         this.speed = speed; //speed of vehicle
         this.direction = direction; //direction of vehicle
         this.color = this.getRandomColor(); //color of vehicle
