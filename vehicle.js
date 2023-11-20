@@ -2,7 +2,15 @@
 
 export class Vehicle {
     //constructor
-    constructor(x, speed, direction, lane, canvasHeight) {
+    constructor(
+        x,
+        speed,
+        direction,
+        lane,
+        canvasHeight,
+        vehicleWidth,
+        vehicleHeight
+    ) {
         //coordinates of vehicle
         this.x = x;
         this.lane = lane;
@@ -15,6 +23,11 @@ export class Vehicle {
         this.speed = speed; //speed of vehicle
         this.direction = direction; //direction of vehicle
         this.color = this.getRandomColor(); //color of vehicle
+        this.width = vehicleWidth;
+        this.height = vehicleHeight;
+
+        this.isExploded = false;
+        this.explosionStartTime = null;
     }
 
     //method to update the vehicle position
@@ -32,5 +45,38 @@ export class Vehicle {
         const g = Math.floor(Math.random() * 256);
         const b = Math.floor(Math.random() * 256);
         return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    //function to get dimensions of vehicls
+    getBounds() {
+        return {
+            left: this.x - this.width / 2,
+            right: this.x + this.width / 2,
+            top: this.y - this.height / 2,
+            bottom: this.y + this.height / 2,
+        };
+    }
+
+    is_clicked(x, y) {
+        const bounds = this.getBounds();
+
+        console.log('x:', x);
+        console.log('bounds.left:', bounds.left);
+        console.log('bounds.right:', bounds.right);
+        console.log('y:', y);
+        console.log('bounds.top:', bounds.top);
+        console.log('bounds.bottom:', bounds.bottom);
+
+        return (
+            x >= bounds.left &&
+            x <= bounds.right &&
+            y >= bounds.top &&
+            y <= bounds.bottom
+        );
+    }
+
+    change_color() {
+        console.log('changing color');
+        this.color = this.getRandomColor();
     }
 }

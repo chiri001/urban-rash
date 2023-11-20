@@ -6,11 +6,15 @@ import { StartButton } from './StartButton.js';
 import { StopButton } from './StopButton.js';
 import { UpButton } from './UpButton.js';
 import { DownButton } from './DownButton.js';
+import { ZoomInButton } from './ZoomIn.js';
+import { ZoomOutButton } from './ZoomOut.js';
+import { RestartButton } from './RestartBtn.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const ctx = document.getElementById('canvas').getContext('2d');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
-    const simulation = new Simulation(ctx, canvas.width, canvas.height);
+    const simulation = new Simulation(ctx, canvas.width, canvas.height, canvas);
     const controlPanel = document.getElementById('control-panel');
 
     const startBtn = new StartButton(simulation);
@@ -24,6 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const DownBtn = new DownButton(simulation);
     DownBtn.appendTo(controlPanel);
+
+    const ZoomInBtn = new ZoomInButton(simulation);
+    ZoomInBtn.appendTo(controlPanel);
+
+    const ZoomOutBtn = new ZoomOutButton(simulation);
+    ZoomOutBtn.appendTo(controlPanel);
+
+    const RestartBtn = new RestartButton(simulation);
+    RestartBtn.appendTo(restartButton);
 
     simulation.start(); //start simulation
 });

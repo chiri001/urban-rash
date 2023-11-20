@@ -1,0 +1,95 @@
+------------------------------------------------------------------------------
+ - Name : Rennie Kipchirchir
+ - Urban Transport Simulation
+ - File: README
+ - Date modified: 11/19/23
+-----------------------------------------------------------------------------
+                        Project Description
+-----------------------------------------------------------------------------
+
+Urban Transport Simulation
+
+The project contains a main central car. The goal is to go as far as you 
+can on the highway without hitting another vehicle. The only other vehicles
+present in the highway are cars, buses and trucks. There are up and down 
+button that is meant to help navigating the central car to avoid 
+collision. There is also the zoom buttons for zooming in and out. Finally, 
+there is start and stop button to start and stop the simulation.
+
+-----------------------------------------------------------------------------
+                        Acknowledgements
+-----------------------------------------------------------------------------
+
+1. Youtube
+2. w3schools.com
+3. Lecture materials
+
+-----------------------------------------------------------------------------
+                      What program does
+-----------------------------------------------------------------------------
+
+The program runs until the central car being navigated collides with 
+another vehicle. When this happens, the game stops and a popup shows
+game over. The popup has a restart button that allows someone to restart
+the game. 
+
+-----------------------------------------------------------------------------
+                    Potential bug?
+-----------------------------------------------------------------------------
+
+None so far.
+
+-----------------------------------------------------------------------------
+                        Architecture
+-----------------------------------------------------------------------------
+
+
+Inheritance Hierachy :
+-----------------------
+
+|-- represents the subclasses of a given  class
+
+Vehicles
+    |--Car
+    |--Bus
+    |--Truck
+    |--MyCar
+
+Button
+    |--StartButton
+    |--StopButton
+    |--RestartButton
+    |--UpButton
+    |--DownButton
+    |--ZoomInButton
+    |--ZoomOutButton
+
+
+
+Aggregation Hierachy :
+-----------------------
+
+Simulation
+    |--Highway
+    |--Vehicle
+    |--Mycar
+    |--Car
+    |--Truck
+    |--Bus
+    |--Collision
+    |--SimulationListener
+
+--------------------------------------------------------------------------
+
+
+How to run: 
+---------------
+1. open file on a browser
+
+
+
+How to Play:
+--------------
+1. Use the Up and Down button to move the central vehicle up and down a lane
+2. Avoid hitting any vehicle while overtaking
+3. You can use start and stop to pause and unpause the simulation

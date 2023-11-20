@@ -10,18 +10,20 @@ export class Highway {
     }
 
     init_markings() {
-        const laneHeight = this.canvasHeight / this.laneCount;
+        const laneHeight = this.canvasHeight / this.laneCount; //height of 1 lane
         const markingWidth = 10; //width of dotted markings
         const spacing = 20; //spaces btwn markings
+        const totalMarkingWidth = markingWidth + spacing;
 
-        for (let i = 0; i < this.canvasWidth; i += spacing + markingWidth) {
+        //starting position of each dotted line
+        for (let i = 0; i < this.canvasWidth; i += totalMarkingWidth) {
             this.markings.push(i);
         }
     }
 
     move_markings(speed) {
         // Move each marking to the left
-        this.markings = this.markings.map((x) => x - speed);
+        this.markings = this.markings.map((mark) => mark - speed);
 
         const markingWidth = 10;
         const spacing = 20;
@@ -29,11 +31,16 @@ export class Highway {
 
         // Add new markings at the right and remove old ones at the left
         const lastMarking = this.markings[this.markings.length - 1];
+
+        //if there is enough spac on the right add new marking
         if (this.canvasWidth - lastMarking > totalMarkingWidth) {
             this.markings.push(lastMarking + totalMarkingWidth);
         }
 
-        this.markings = this.markings.filter((x) => x > -totalMarkingWidth);
+        //remove old markings that have gone beyond the left edge
+        this.markings = this.markings.filter(
+            (mark) => mark > -totalMarkingWidth
+        );
     }
 
     draw(ctx) {
@@ -45,9 +52,9 @@ export class Highway {
 
         // Draw lane markings
         ctx.fillStyle = 'white';
-        this.markings.forEach((x) => {
+        this.markings.forEach((mark) => {
             for (let i = 1; i < this.laneCount; i++) {
-                ctx.fillRect(x, laneHeight * i - 2, 20, 4);
+                ctx.fillRect(mark, laneHeight * i - 2, 20, 4);
             }
         });
     }
